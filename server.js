@@ -25,6 +25,7 @@ async function connectToDatabase() {
         console.log("Connected to MongoDB!");
     } catch (error) {
         console.error("Failed to connect to MongoDB", error);
+        process.exit(1); // Exit the process if connection fails
     }
 }
 
@@ -37,6 +38,7 @@ app.get('/api/data', async (req, res) => {
         const data = await collection.find({}).toArray();
         res.json(data);
     } catch (error) {
+        console.error("Error retrieving data", error);
         res.status(500).send("Error retrieving data");
     }
 });
