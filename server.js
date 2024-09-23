@@ -1,16 +1,14 @@
 const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const cors = require('cors');
-require('dotenv').config(); // Load environment variables from .env file
-
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // Middleware to handle JSON and cross-origin requests
 app.use(express.json());
 app.use(cors());
 
-const uri = process.env.MONGO_URI; // Use the Mongo URI from .env
+const uri = "mongodb+srv://bhaveshbadmin:6j3O1UDQ942g60ZD@monopoly.cfhrq.mongodb.net/?retryWrites=true&w=majority&appName=Monopoly";
 
 const client = new MongoClient(uri, {
     serverApi: {
@@ -42,6 +40,19 @@ app.get('/api/data', async (req, res) => {
         res.status(500).send("Error retrieving data");
     }
 });
+
+// Add this endpoint in server.js
+app.post('/api/save-points', async (req, res) => {
+    const { points } = req.body; // Extract points from the request body
+    try {
+        const collection = client.db("monopolyDB").collection("gameData");
+        await collection.insertOne({ points }); // Save points to the collection
+        res.status(201).send("Points saved successfully");
+    } catch (error) {
+        res.status(500).send("Error saving points");
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
