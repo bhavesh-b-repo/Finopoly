@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Monopoly Game Landing</title>
     <style>
+	
         body {
             margin: 0;
             padding: 0;
@@ -17,7 +18,7 @@
         .container {
             display: flex;
             width: 100%;
-            height: 100%;
+            height: 97%;
         }
 
         .left-half {
@@ -51,7 +52,7 @@
             bottom: 1px; /* Position video 20px from the bottom */
             left: 60%; /* Center horizontally */
             transform: translateX(-50%); /* Offset for true center */
-            width: 80%; /* Adjust width as needed */
+            width: 70%; /* Adjust width as needed */
             z-index: 1; /* Behind the content */
         }
 
@@ -64,10 +65,259 @@
 
         .right-half {
             width: 60%; /* Right half width */
-            border: 5px solid #FB8B23; /* Flame Orange */
+            border: 3px solid #FB8B23; /* Border color */
             box-sizing: border-box;
             padding: 20px; /* Added padding for better spacing */
+            position: relative; /* Position relative for absolute child */
         }
+
+        .corner-box-left,
+        .corner-box-bleft{
+            width: 10.7%; /* Adjusted width of the square box */
+            height: 15%; /* Height of the square box */
+            background-color: #FB8B23; /* Flame Orange color */
+            color: white; /* Text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            position: absolute; /* Position it within the right-half */
+        }
+        .corner-box-right,
+        .corner-box-bright {
+            width: 10%; /* Adjusted width of the square box */
+            height: 15%; /* Height of the square box */
+            background-color: #FB8B23; /* Flame Orange color */
+            color: white; /* Text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            position: absolute; /* Position it within the right-half */
+        }
+
+        .corner-box-left {
+            top: 0px; /* Space from the top */
+            left: 0px; /* Space from the left */
+        }
+        
+        .corner-box-right {
+            top: 0px; /* Space from the top */
+            right: 0px; /* Space from the right */
+        }
+
+        .corner-box-bleft {
+            bottom: 0px; /* Space from the bottom */
+            left: 0px; /* Space from the left */
+        }
+
+        .corner-box-bright {
+            bottom: 0px; /* Space from the bottom */
+            right: 0px; /* Space from the right */
+        }
+
+        .top-box-container {
+            display: flex; /* Use flexbox for alignment */
+            justify-content: space-between; /* Even spacing between boxes */
+            align-items: flex-start; /* Align to the top */
+            position: absolute; /* Position it absolutely within the right half */
+            top: 2px;
+            left: 90px;
+            height: 14%; /* Match height of corner boxes */
+            width: 78.5%; /* Adjust width of the middle box container */
+            margin-left: auto; /* Center the container */
+            margin-right: auto; /* Center the container */
+        }
+
+        .top-box {
+            width: 10%; /* Reduced width of the middle boxes */
+            height: 100%; /* Full height */
+             border: 1px solid #1e1e1e; /* Charcoal Grey border */
+    background-color: transparent; /* Remove background color */
+            color: white; /* Text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer; /* Change cursor to pointer for clickable boxes */
+        }
+
+        /* Neon effect */
+        .glow {
+            animation: neon 1.5s infinite alternate; /* Neon animation */
+        }
+
+        @keyframes neon {
+            0% {
+                box-shadow: 0 0 5px #26619c, 0 0 10px #26619c, 0 0 15px #26619c;
+            }
+            100% {
+                box-shadow: 0 0 20px #26619c, 0 0 30px #26619c, 0 0 40px #26619c;
+            }
+        }
+
+        .bottom-box-container {
+            display: flex; /* Use flexbox for alignment */
+            justify-content: space-between; /* Even spacing between boxes */
+            align-items: flex-end; /* Align to the bottom */
+            position: absolute; /* Position it absolutely within the right half */
+            bottom: 3px; /* Space from the bottom of the right half */
+            left: 90px;
+            height: 14%; /* Match height of corner boxes */
+            width: 78.5%; /* Adjust width of the middle box container */
+            margin-left: auto; /* Center the container */
+            margin-right: auto; /* Center the container */
+        }
+
+        .bottom-box {
+            width: 10%; /* Reduced width of the middle boxes */
+            height: 100%; /* Full height */
+             border: 1px solid #1e1e1e; /* Charcoal Grey border */
+    background-color: transparent; /* Remove background color */
+            color: white; /* Text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            cursor: pointer; /* Change cursor to pointer for clickable boxes */
+        }
+		.left-box-container {
+		display: flex; /* Use flexbox for alignment */
+		flex-direction: column; /* Stack boxes vertically */
+		justify-content: space-between; /* Even spacing between boxes */
+		align-items: left; /* Center align items horizontally */
+		position: absolute; /* Position it absolutely within the right half */
+		top: 0px; /* Space from the top */
+		bottom:0px; /* Space from the bottom */
+		left: 1px;
+		height: 70%; /* Full height of the parent */
+		width: 78%; /* Adjust width of the middle box container */
+		margin: auto; /* Center the container */
+	}
+
+	.left-box {
+		width: 13%; /* Width for the middle boxes */
+		height: 65px; /* Fixed height for boxes */
+		 border: 1px solid #1e1e1e; /* Charcoal Grey border */
+    background-color: transparent; /* Remove background color */
+		color: white; /* Text color */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: bold;
+		cursor: pointer; /* Change cursor to pointer for clickable boxes */
+		margin: 1px 0; /* Spacing between boxes */
+	}
+	.right-box-container {
+		display: flex; /* Use flexbox for alignment */
+		flex-direction: column; /* Stack boxes vertically */
+		justify-content: space-between; /* Even spacing between boxes */
+		align-items: right; /* Center align items horizontally */
+		position: absolute; /* Position it absolutely within the right half */
+		top: 0px; /* Space from the top */
+		bottom:0px; /* Space from the bottom */
+		right: -547px;
+		height: 70%; /* Full height of the parent */
+		width: 78%; /* Adjust width of the middle box container */
+		margin: auto; /* Center the container */
+	}
+
+	.right-box {
+		width: 12%; /* Width for the middle boxes */
+		height: 65px; /* Fixed height for boxes */
+		 border: 1px solid #1e1e1e; /* Charcoal Grey border */
+    background-color: transparent; /* Remove background color */
+		color: white; /* Text color */
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: bold;
+		cursor: pointer; /* Change cursor to pointer for clickable boxes */
+		margin: 1px 0; /* Spacing between boxes */
+	}
+
+	
+	   .center-image {
+            max-width: 45%;
+            height: auto;
+            margin: 190px 100px 10px 210px; /* Adjust margins (top, right, bottom, left) */
+        }
+		
+	    /* Highlight for active box during roll */
+        .highlight {
+            background-color: #FB8B23 !important;
+            color: #fff;
+            transition: background-color 0.2s ease;
+        }
+			
+		.roll {
+		display: flex;
+		justify-content: right; /* Center horizontally */
+		align-items: flex-end; /* Align to the bottom */
+		width: 97%; /* Full width of the container */
+		height: 100%; /* Full height of the left half */
+		position: absolute; /* Allow for absolute positioning inside left-half */
+		bottom: 0; /* Stick to the bottom */
+		}
+
+		button {
+			padding: 10px 15px;
+			background-color: #51087E;
+			border: none;
+			color: white;
+			font-size: 14px;
+			cursor: pointer;
+			border-radius: 5px;
+			 z-index: 1000; /* Ensure it's above other elements */
+		}
+		 #overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: none; /* Initially hidden */
+    z-index: 999; /* Ensure it covers other elements */
+}
+
+#questionPopup {
+    position: fixed;
+    top: 50%;
+    center: 0; /* Align to the right side */
+    transform: translateY(-50%); /* Center vertically */
+    width: 320px; /* Set the width of the popup */
+    background: white; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    z-index: 1000; /* Ensure it appears above the overlay */
+    display: none; /* Initially hidden */
+}
+
+.popup-content {
+    padding: 20px; /* Add some padding */
+}
+
+#optionsContainer {
+    margin-top: 20px; /* Space between question and options */
+}
+
+.optionButton {
+    display: block; /* Stack options vertically */
+    margin: 5px 0; /* Space between buttons */
+    padding: 10px; /* Padding for buttons */
+    background-color: #FB8B23; /* Flame Orange */
+    border: none; /* No border */
+    color: white; /* Text color */
+    cursor: pointer; /* Pointer cursor */
+    border-radius: 5px; /* Rounded button */
+}
+
+.optionButton:hover {
+    background-color: #e07e19; /* Darker shade on hover */
+}
+
+
     </style>
 </head>
 <body>
@@ -76,17 +326,232 @@
             <h1>Monopoly Game</h1>
             <h2>Guide to Play the Game</h2>
             <div class="video-container">
-                <video autoplay loop muted>
+                <video id="gameVideo" muted>
                     <source src="https://raw.githubusercontent.com/bhavesh-b-repo/Finopoly/main/Untitled%20design.mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
+			<div class="roll">
+				<button onclick="rollDice()">Roll the Dice</button> <!-- Dice Roll Button -->
+				</div>
         </div>
         <div class="right-half">
-            <h2>Welcome to the Game!</h2>
-            <p>Get ready to play Monopoly.</p>
-            <p>Choose your token and start your journey!</p>
-        </div>
+            <div class="corner-box-left"></div>
+            <div class="corner-box-right"></div>
+            <div class="corner-box-bleft"></div>
+            <div class="corner-box-bright"></div>
+            <div class="top-box-container">
+                <div class="top-box" onclick="showPopup(1)">Box 1</div>
+                <div class="top-box gloww" id="highlight-box-1">Box 2</div>
+                <div class="top-box" >Box 3</div>
+                <div class="top-box">Box 4</div>
+                <div class="top-box glwow" id="highlight-box-2">Box 5</div>
+                <div class="top-box">Box 6</div>
+                <div class="top-box">Box 7</div>
+                <div class="top-box gloww" id="highlight-box-3">Box 8</div>
+                <div class="top-box">Box 9</div>
+            </div>
+            <div class="bottom-box-container">
+                <div class="bottom-box">Box 1 </div>
+                <div class="bottom-box">Box 2</div>
+                <div class="bottom-box">Box 3</div>
+                <div class="bottom-box">Box 4</div>
+                <div class="bottom-box">Box 5</div>
+                <div class="bottom-box">Box 6</div>
+                <div class="bottom-box">Box 7</div>
+                <div class="bottom-box">Box 8</div>
+                <div class="bottom-box">Box 9</div>
+            </div>
+			<div class="left-box-container">
+                <div class="left-box">Box</div>
+				<div class="left-box">Box</div>
+				<div class="left-box">Box</div>
+				<div class="left-box">Box</div>
+				<div class="left-box">Box</div>
+				<div class="left-box">Box</div>
+            </div>
+			<div class="right-box-container">
+                <div class="right-box">Box</div>
+				 <div class="right-box">Box</div>
+				  <div class="right-box">Box</div>
+				   <div class="right-box">Box</div>
+				    <div class="right-box">Box</div>
+					 <div class="right-box">Box</div>
+            </div>
+			 <img src="file:///C:/Users/bhavesh.b/Desktop/FINOPOLY.png" alt="FINOPOLY" class="center-image">
+		</div>
+		<div id="overlay" style="display: none;"></div>
+
+<div id="questionPopup" style="display: none;">
+    <p id="questionText"></p>
+    <div id="optionsContainer"></div>
+    <button id="closePopup">Close</button>
+</div>
+
+		
     </div>
+
+    <script>
+         const boxes = document.querySelectorAll('#highlight-box-1, #highlight-box-2, #highlight-box-3');
+        const video = document.getElementById('gameVideo');
+        const popup = document.getElementById('questionPopup');
+        const overlay = document.getElementById('overlay');
+const questionText = document.getElementById('questionText'); // Assuming you have an element in the popup to display the question
+const optionsContainer = document.getElementById('optionsContainer'); // Assuming you have an element to display options
+const closeButton = document.getElementById('closePopup'); // Button to close the popup
+const rollDiceButton = document.querySelector('.roll button'); // Select the roll dice button
+
+
+// Questions and answers
+const questions = {
+    1: {
+        question: "What is the capital of France?",
+        options: ["Paris", "Berlin", "Rome", "Madrid"],
+        correct: 1  // Option 1 (Paris) is correct
+    },
+    2: {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Jupiter", "Venus"],
+        correct: 2  // Option 2 (Mars) is correct
+    },
+    3: {
+        question: "What is the largest mammal?",
+        options: ["Elephant", "Blue Whale", "Giraffe", "Lion"],
+        correct: 2  // Option 2 (Blue Whale) is correct
+    }
+};
+
+// Function to open the popup with the corresponding question
+function openQuestionPopup(questionId) {
+    const questionData = questions[questionId];
+
+    // Set the question text
+    questionText.textContent = questionData.question;
+
+    // Clear previous options
+    optionsContainer.innerHTML = '';
+
+    // Add options dynamically
+    questionData.options.forEach((option, index) => {
+        const optionButton = document.createElement('button');
+        optionButton.textContent = option;
+        optionButton.classList.add('optionButton');
+
+        // Add click event to check if the answer is correct
+        optionButton.addEventListener('click', function() {
+            if (index === questionData.correct) {
+                alert("Correct! You earned 2 points.");
+                // Add logic to update points here
+            } else {
+                alert("You have landed in jail, Try again.");
+                // Add logic for "jail" scenario here
+            }
+            closePopup(); // Close the popup after answering
+        });
+
+        // Append the button to the container
+        optionsContainer.appendChild(optionButton);
+    });
+
+    // Show the popup and overlay
+    popup.style.display = 'block';
+    overlay.style.display = 'block';
+	rollDiceButton.disabled = true; // Disable roll dice button
+}
+
+// Function to close the popup
+function closePopup() {
+    popup.style.display = 'none';
+    overlay.style.display = 'none';
+	rollDiceButton.disabled = false; // Enable roll dice button
+}
+
+// Add event listener for the first box
+document.getElementById('highlight-box-1').addEventListener('click', function() {
+    openQuestionPopup(1);  // Open the popup with question 1
+});
+
+// Add event listeners for other boxes as needed
+document.getElementById('highlight-box-2').addEventListener('click', function() {
+    openQuestionPopup(2);  // Open the popup with question 2
+});
+
+document.getElementById('highlight-box-3').addEventListener('click', function() {
+    openQuestionPopup(3);  // Open the popup with question 3
+});
+
+// Add event listener for the close button in the popup
+closeButton.addEventListener('click', closePopup);
+
+
+        function rollDice() {
+            // Reset video to start and play
+            video.currentTime = 0;
+            video.play();
+
+            let currentIndex = 0;
+            let intervalId = setInterval(() => {
+                boxes.forEach(box => box.classList.remove('highlight'));
+                boxes[currentIndex].classList.add('highlight');
+                currentIndex = (currentIndex + 1) % boxes.length;
+            }, 200);
+
+            setTimeout(() => {
+                clearInterval(intervalId);
+                let randomIndex = Math.floor(Math.random() * boxes.length);
+                boxes.forEach(box => box.classList.remove('highlight'));
+                boxes[randomIndex].classList.add('highlight');
+                alert("Stopped at: " + boxes[randomIndex].innerText);
+
+                // Stop the video after the rolling animation
+                video.pause();
+            }, Math.random() * 2000 + 2000);
+        }
+		// Function to check the answer
+function checkAnswer(selectedOption, questionId) {
+    const questionData = questions[questionId];
+    let pointsEarned = 0;
+
+    if (selectedOption === questionData.correct) {
+        pointsEarned = 2; // Earn 2 points for correct answer
+        alert('Correct! You earned 2 points.');
+    } else {
+        alert('You have landed in jail, Try again.');
+    }
+
+    // Call the function to save points to MongoDB
+    savePointsToDatabase(pointsEarned);
+    
+    // Close the popup after answering
+    closePopup();
+}
+// Function to save points to MongoDB
+function savePointsToDatabase(points) {
+    const apiUrl = 'http://localhost:3000/api/save-points'; // Update to match your API endpoint
+
+    fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ points: points }),
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Points saved successfully:', data);
+        // Update your UI or state here if necessary
+    })
+    .catch(error => {
+        console.error('Error saving points:', error);
+    });
+}
+
+
+    </script>
 </body>
 </html>
