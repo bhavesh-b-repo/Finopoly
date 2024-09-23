@@ -8,7 +8,7 @@ const port = 3000;
 app.use(express.json());
 app.use(cors());
 
-const uri = "mongodb+srv://bhaveshbadmin:Audirs7usa%23@monopoly.cfhrq.mongodb.net/?retryWrites=true&w=majority&appName=Monopoly";
+const uri = "mongodb+srv://bhaveshbadmin:6j3O1UDQ942g60ZD@monopoly.cfhrq.mongodb.net/?retryWrites=true&w=majority&appName=Monopoly";
 
 const client = new MongoClient(uri, {
     serverApi: {
