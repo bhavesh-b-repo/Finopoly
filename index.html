@@ -10,6 +10,9 @@
       padding: 0;
       height: 100%;
       overflow: hidden;
+      position: relative;
+      color: white;
+      font-family: Arial, sans-serif;
     }
 
     .background-video {
@@ -31,17 +34,62 @@
     }
 
     .start-game-btn {
-      display: none;
       padding: 10px 20px;
       font-size: 24px;
+      background-color: rgba(0, 0, 0, 0.6); /* Foggy black background */
+      color: white; /* White text */
+      border: 2px solid #FB8B23; /* Neon border color */
+      border-radius: 5px;
+      cursor: pointer;
+      display: none; /* Initially hidden */
+      transition: all 0.3s ease; /* Smooth transition */
+    }
+
+    .start-game-btn:hover {
+      background-color: rgba(251, 139, 35, 0.2); /* Light overlay on hover */
+      box-shadow: 0 0 20px #FB8B23; /* Neon glow effect */
+    }
+
+    .start-gameplay-btn {
+      display: inline-block; /* Initially visible */
+    }
+
+    /* Popup styles */
+    .popup {
+      display: none; /* Hidden by default */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.8);
+      border: 2px solid #FB8B23;
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 1000;
+      text-align: center;
+    }
+
+    .popup input {
+      padding: 10px;
+      width: 80%;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 2px solid #FB8B23;
+      outline: none;
+    }
+
+    .popup button {
+      margin-top: 10px;
+      padding: 10px 20px;
       background-color: #FB8B23;
       color: white;
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      transition: background-color 0.3s ease;
     }
 
-    .start-game-btn:hover {
+    .popup button:hover {
       background-color: #26619c;
     }
   </style>
@@ -49,19 +97,24 @@
 <body>
 
   <!-- Video element -->
-  <video class="background-video" id="introVideo" autoplay muted>
+  <video class="background-video" id="introVideo" muted>
     <source src="http://localhost:80/Finopoly/Intro_Monopoly.MP4" type="video/mp4">
     Your browser does not support HTML5 video.
   </video>
 
-  <!-- Separate audio element -->
-  <audio id="introAudio" autoplay>
-    <source src="https://github.com/bhavesh-b-repo/Finopoly/blob/08f05a39978c7179dd5c16fd117345b41bf8a6ce/Intro_Audio.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+  <!-- Audio element -->
+  <audio id="introAudio" src="file:///C:/Users/bhavesh.b/Desktop/Intro_Audio.mp3"></audio>
 
   <div class="container">
-    <button class="start-game-btn" id="startGameButton" onclick="startGame()">Start Game</button>
+    <button class="start-game-btn start-gameplay-btn" id="startGameplayButton" onclick="startGameplay()">Start Gameplay</button>
+    <button class="start-game-btn" id="startGameButton" onclick="showEmailPopup()">Start Game</button>
+  </div>
+
+  <!-- Popup for email input -->
+  <div class="popup" id="emailPopup">
+    <h2>Enter Your Email</h2>
+    <input type="email" id="emailInput" placeholder="Email ID" required>
+    <button onclick="submitEmail()">Submit</button>
   </div>
 
   <script>
@@ -69,20 +122,42 @@
     const video = document.getElementById('introVideo');
     const audio = document.getElementById('introAudio');
 
-    // Play both video and audio simultaneously
-    video.play();
-    audio.play();
+    // Function to start gameplay
+    function startGameplay() {
+      // Hide the "Start Gameplay" button
+      document.getElementById('startGameplayButton').style.display = 'none';
 
-    // Show the "Start Game" button after 7 seconds
-    setTimeout(() => {
-      document.getElementById('startGameButton').style.display = 'inline-block';
-    }, 7000); // 7 seconds delay
+      // Play the video and audio
+      video.play();
+      audio.play();
 
-    // Function to trigger game start
-    function startGame() {
-      alert('Game Starting...');
-      // You can redirect to the game page here
-      // window.location.href = 'game.html';
+      // Show "Start Game" button after 7 seconds
+      setTimeout(() => {
+        document.getElementById('startGameButton').style.display = 'inline-block';
+      }, 7000); // 7 seconds delay
+    }
+
+    // Function to show email popup
+    function showEmailPopup() {
+      document.getElementById('emailPopup').style.display = 'block'; // Show the popup
+    }
+
+    // Function to submit email and redirect
+    function submitEmail() {
+      const email = document.getElementById('emailInput').value;
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email regex
+
+      // Validate email format
+      if (emailPattern.test(email)) {
+        // Stop the video and audio
+        video.pause();
+        audio.pause();
+
+        // Navigate to the new HTML page
+        window.location.href = "monopoly.html";
+      } else {
+        alert("Please enter a valid email ID.");
+      }
     }
   </script>
 </body>
